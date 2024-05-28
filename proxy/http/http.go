@@ -38,6 +38,10 @@ func (h *Http) httpHandle(w http.ResponseWriter, r *http.Request) {
 	if authorization != "" && !h.AuthCheck(authorization) {
 		http.Error(w, "Unauthorized", http.StatusUnauthorized)
 	}
+	remoteAddr := strings.Split(r.RemoteAddr, ":")
+	if h.conf.Whitelist != "" && remoteAddr[0] != h.conf.Whitelist {
+		http.Error(w, "Unauthorized", http.StatusUnauthorized)
+	}
 
 	if r.Method == http.MethodConnect {
 		h.handleHttps(w, r)

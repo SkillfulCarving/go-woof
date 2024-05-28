@@ -7,6 +7,7 @@ import (
 
 type HttpConf struct {
 	ServerAddr string `toml:"listen"` // 服务器地址
+	Whitelist  string `toml:"whitelist"`
 	Username   string `toml:"username"`
 	Password   string `toml:"password"`
 }

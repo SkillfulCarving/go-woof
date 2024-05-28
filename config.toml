@@ -5,11 +5,12 @@
     [tcp.client]
         remote = "127.0.0.1:3000"
         proxy_addr = """
-        node1   10.189.62.191:3389  3389
-        node2   10.189.62.191:3389  3381
+        node1   127.0.0.1:3389  3389
+        node2   127.0.0.1:3389  3381
         """
 
 [http]
     listen = "0.0.0.0:6000"
+    whitelist = "127.0.0.1"
     # username = ""
     # password = ""

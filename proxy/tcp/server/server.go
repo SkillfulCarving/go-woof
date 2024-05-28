@@ -70,7 +70,7 @@ func (s *Server) registerClient(conn net.Conn, name string, port uint16) {
 		respData.Msg = fmt.Sprintf("name-%v registered，cannot register repeatedly", name)
 		respData.Method = public.TypeResponse
 		_ = respData.Write(conn)
-		log.Println(fmt.Sprintf("[-]access failed, duplicate service name! addr: %v name: %v proxy_port: %v", conn.RemoteAddr(), name, port))
+		log.Println(fmt.Sprintf("[-] access failed, duplicate service name! addr: %v name: %v proxy_port: %v", conn.RemoteAddr(), name, port))
 		return
 	}
 
@@ -99,7 +99,7 @@ func (s *Server) registerClient(conn net.Conn, name string, port uint16) {
 		Msg:    fmt.Sprintf("name-%v register success", name),
 	}
 	_ = respData.Write(conn)
-	log.Println(fmt.Sprintf("[+]register success! addr: %v name: %v proxy_port: %v", conn.RemoteAddr(), name, port))
+	log.Println(fmt.Sprintf("[+] register success! addr: %v name: %v proxy_port: %v", conn.RemoteAddr(), name, port))
 	go func() {
 		for {
 			reqConn, err := listener.Accept()
